@@ -4,7 +4,12 @@ import Photographer from '@/components/Photographer.vue'
 
 const factory = (values = {}) => {
   return shallowMount(Photographer, {
-    propsData: values
+    propsData: values,
+    data () {
+      return {
+        
+      }
+    }
   })
 }
 
