@@ -1,4 +1,5 @@
 # my-app
+Learn Vue.js by practicing
 
 ## Project setup
 ```
