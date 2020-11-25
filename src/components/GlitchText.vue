@@ -32,8 +32,10 @@ export default {
         };
     },
     watch: {
-        text: function(val) {
+        text: function(val, oldVal) {
             this.currentText = "";
+            console.log('val: ', val);
+            console.log('oldVal: ', oldVal);
             this.displayText(val, "");
         }
     },
