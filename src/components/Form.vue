@@ -3,18 +3,26 @@
         <h1>This is Form</h1>
         <form @submit="publish">
             <label for="message">Message</label>
+            <br>
             <textarea placeholder="Type!" v-model="currentStatus.text"></textarea>
+            <br>
+            <input type="checkbox" v-model="currentStatus.private">
+            <span>Mark as private</span>
             <button v-bind:disabled="messageLimit">publish</button>
         </form>
-
+        
         <div v-bind:class="{ 'message-limit' : messageLimit }">message length: {{ currentStatus.text.length }} / {{ maxLength }}</div>
-
+        <br>
         <div>
             <div v-for="(update, index) in updates" :key="index" >
+                <p v-show="update.private">PRIVATE</p>
                 <p>{{ update.name }}</p>
                 <pre>{{ update }}</pre>
             </div>
         </div>
+
+        <p>{{ seconds }} have passed since you were on the webpage</p>
+
     </div>
 
 </template>
@@ -30,8 +38,14 @@ export default {
                 text: ''
             },
             maxLength: 100,
-            updates: []
+            updates: [],
+            seconds: 0
         }
+    },
+    created() {
+        setInterval(() => {
+            this.seconds++;
+        }, 1000);
     },
     computed: {
         messageLimit() {
@@ -46,7 +60,8 @@ export default {
             //***************************************** */
             Object.assign(newStatus, this.currentStatus);
             //***************************************** */
-            this.updates.push(newStatus);
+            //this.updates.push(newStatus);
+            this.updates.unshift(newStatus);
             this.currentStatus.text = '';
         }
     }
