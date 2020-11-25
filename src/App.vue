@@ -1,17 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Gallery v-bind:title="galleryTitle" /> 
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Gallery from './components/Gallery.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Gallery
+  },
+  data() {
+    return {
+      galleryTitle: 'Photography Gallery'
+    }
   }
 }
 </script>
